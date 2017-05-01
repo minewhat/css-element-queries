@@ -102,7 +102,10 @@
                 return element.currentStyle[prop];
             }
             if (window.getComputedStyle) {
-                return window.getComputedStyle(element, null).getPropertyValue(prop);
+                var computedElementStyle = window.getComputedStyle(element, null);
+                if (computedElementStyle) {
+                  return computedElementStyle.getPropertyValue(prop);
+                }
             }
 
             return element.style[prop];
